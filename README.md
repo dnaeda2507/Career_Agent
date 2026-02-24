@@ -24,7 +24,6 @@ The frontend provides a clean chat interface for real-time interaction.
 ## 🌟 Key Features
 
 ### 🧠 Primary Career Agent
-
 - Represents Eda Dana’s professional persona
 - Uses:
   - `EDA_DANA_CV.pdf`
@@ -32,31 +31,26 @@ The frontend provides a clean chat interface for real-time interaction.
 - Answers academic, technical, and career-related questions
 
 ### 🧪 LLM-as-a-Judge (Evaluator Agent)
-
 - A second LLM evaluates each generated response
 - Scores responses from **1–10**
 - If score < **7.0**, the response is automatically revised
 
 ### 👩‍💻 Human-in-the-Loop System
-
 - Detects:
   - Sensitive questions (salary, private address, etc.)
   - Unknown or low-confidence answers
 - Sends Telegram notification for manual intervention
 
 ### 📲 Real-Time Notifications
-
 - Integrated with Telegram Bot API
 - Sends instant alerts to a predefined chat ID
 
 ### 🧩 Volatile Memory
-
 - Conversation history stored **in-memory per `user_id`**
 - Enables contextual multi-turn conversations
 - No database persistence (ephemeral session-based memory)
 
 ### 📝 Logging
-
 - All interactions are recorded in: `career_agent_logs.txt`
 
 ---
@@ -88,25 +82,31 @@ The frontend provides a clean chat interface for real-time interaction.
 
 ## 📂 Repository Structure
 
-.
+```
+Career_Agent/
 ├── backend/
-│ ├── app.py # FastAPI core & Dual-Agent logic
-│ ├── EDA_DANA_CV.pdf # Knowledge base for the agent
-│ ├── summary.txt # Professional context summary
-│ └── requirements.txt # Python dependencies
+│   ├── app.py              # FastAPI core & Dual-Agent logic
+│   ├── EDA_DANA_CV.pdf     # Knowledge base for the agent
+│   ├── summary.txt         # Professional context summary
+│   └── requirements.txt    # Python dependencies
 ├── frontend/
-│ ├── src/ # React components & API service
-│ └── package.json # Frontend dependencies
-└── README.md # Project documentation
+│   ├── src/                # React components & API service
+│   └── package.json        # Frontend dependencies
+└── README.md               # Project documentation
+```
+
+---
 
 ## ⚙️ Quick Start
 
 ### 1️⃣ Environment Configuration
 
 Create a `.env` file inside the `backend/` directory:
+```
 OPENAI_API_KEY=your_openai_key
 TELEGRAM_TOKEN=your_bot_token
 TELEGRAM_CHAT_ID=your_chat_id
+```
 
 ---
 
@@ -117,17 +117,25 @@ cd backend
 python -m venv venv
 pip install -r requirements.txt
 uvicorn app:app --reload
+```
 
-Backend runs at:
+Backend runs at:  
 http://localhost:8000
 
+---
+
 ### 3️⃣ Run Frontend
+
+```bash
 cd frontend
 npm install
 npm start
+```
 
-Frontend runs at:
+Frontend runs at:  
 http://localhost:3000
+
+---
 
 **Environment Variables**
 - `OPENAI_API_KEY` — OpenAI API key used by the backend OpenAI client.
@@ -138,7 +146,3 @@ http://localhost:3000
 - Browser (React) <-> FastAPI backend <-> OpenAI API
 - Notifications: FastAPI -> Telegram (optional)
 - Data: CV PDF and `summary.txt` are read at startup; conversation memory is ephemeral (in-memory).
-
-
-
-```
