@@ -55,6 +55,41 @@ The frontend provides a clean chat interface for real-time interaction.
 
 ---
 
+## 🗂️ System Architecture Overview
+
+### Simple Workflow Diagram
+
+```text
+[ Employer ]
+    |
+    v
+( React UI )
+    |
+    v
+[ FastAPI Backend ]
+    |
+    v
+[ Career Agent (GPT-4o-mini) ]
+    |
+    v
+[ Response Evaluator Agent ]
+   /                       \
+(Score < 7)            (Score >= 7)
+    |                       |
+[ Automatic Revision ]  [ Final Response ]
+                              |
+                              v
+                 [ Telegram Notification ]
+                              |
+                        ( Your Phone )
+```
+
+Or visually:
+
+![System Architecture Diagram](./simple_architecture.svg)
+
+---
+
 ## 🛠️ Technology Stack
 
 ### Backend
@@ -77,7 +112,7 @@ The frontend provides a clean chat interface for real-time interaction.
 
 - Docker
 - Hugging Face Spaces
-
+- https://huggingface.co/spaces/edahug/career_agent 
 ---
 
 ## 📂 Repository Structure
@@ -92,6 +127,7 @@ Career_Agent/
 ├── frontend/
 │   ├── src/                # React components & API service
 │   └── package.json        # Frontend dependencies
+├── simple_architecture.svg # Simple logic diagram
 └── README.md               # Project documentation
 ```
 
